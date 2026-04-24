@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BIDSTOOLS Measure</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div>
+          <h1>BIDSTOOLS Measure</h1>
+          <p class="subtitle">Internal Illustrator measurement panel</p>
+        </div>
+        <button id="refreshButton" class="button button-secondary" type="button">Refresh</button>
+      </header>
+
+      <nav class="tab-bar" aria-label="Panel sections">
+        <button class="tab-button" type="button" data-tab-target="scale">Scale</button>
+        <button class="tab-button" type="button" data-tab-target="transform">Transform</button>
+        <button class="tab-button" type="button" data-tab-target="dimensions">Dimensions</button>
+        <button class="tab-button" type="button" data-tab-target="debug">Debug</button>
+      </nav>
+
+      <div class="tab-panel" data-tab-panel="scale">
+        <section class="panel" id="scalePanel">
+          <div class="panel-header">
+            <h2>Scale</h2>
+          </div>
+          <div class="radio-row">
+            <label><input type="radio" name="scaleMode" value="document" checked> Document-based</label>
+            <label><input type="radio" name="scaleMode" value="layer"> Layer-based</label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Preset</span>
+              <select id="scalePreset">
+                <option value="1:1">1:1</option>
+                <option value="38 mm = 1 m">38 mm = 1 m</option>
+              </select>
+            </label>
+            <label class="field field-full">
+              <span>Custom</span>
+              <input id="customScaleInput" type="text" placeholder="38 mm = 1 m">
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-panel" data-tab-panel="transform">
+        <section class="panel" id="selectionPanel">
+          <div class="panel-header">
+            <h2>Selection</h2>
+            <span class="pill" id="selectionStatus">Idle</span>
+          </div>
+          <div class="info-grid" id="selectionInfo"></div>
+          <p class="message" id="selectionMessage">No data loaded.</p>
+        </section>
+
+        <section class="panel" id="transformPanel">
+          <div class="panel-header">
+            <h2>Transform</h2>
+          </div>
+          <div class="transform-grid">
+            <label class="field">
+              <span>W</span>
+              <div class="input-unit">
+                <input id="transformW" type="text" inputmode="decimal">
+                <span class="unit-suffix">m</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>H</span>
+              <div class="input-unit">
+                <input id="transformH" type="text" inputmode="decimal">
+                <span class="unit-suffix">m</span>
+              </div>
+            </label>
+            <div class="lock-column">
+              <button id="lockToggleButton" class="button icon-lock-button icon-lock-active" type="button" aria-pressed="true" title="Lock proportions">
+                <span class="chain-icon" aria-hidden="true">
+                  <span class="chain-link chain-link-left"></span>
+                  <span class="chain-bridge"></span>
+                  <span class="chain-link chain-link-right"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="preview-block" id="transformPreview">
+            <div class="preview-header">Preview</div>
+            <div class="preview-grid">
+              <div class="preview-item">
+                <span class="preview-label">W</span>
+                <strong id="previewW">0.00 m</strong>
+              </div>
+              <div class="preview-item">
+                <span class="preview-label">H</span>
+                <strong id="previewH">0.00 m</strong>
+              </div>
+              <div class="preview-item">
+                <span class="preview-label">Perimeter</span>
+                <strong id="previewPerimeter">0.00 m</strong>
+              </div>
+              <div class="preview-item">
+                <span class="preview-label">Area</span>
+                <strong id="previewArea">0.00 sq m</strong>
+              </div>
+            </div>
+          </div>
+          <button id="applyTransformButton" class="button" type="button">Apply Transform</button>
+        </section>
+      </div>
+
+      <div class="tab-panel" data-tab-panel="dimensions">
+        <section class="panel" id="dimensionsPanel">
+          <div class="panel-header">
+            <h2>Dimensions</h2>
+          </div>
+          <div class="dimension-toolbar">
+            <button class="button tool-button" type="button" data-dimension-mode="horizontalLine" id="horizontalLineButton">Horizontal - by Line</button>
+            <button class="button tool-button" type="button" data-dimension-mode="horizontalPoints" id="horizontalPointsButton">Horizontal - by Points</button>
+            <button class="button tool-button" type="button" data-dimension-mode="verticalLine" id="verticalLineButton">Vertical - by Line</button>
+            <button class="button tool-button" type="button" data-dimension-mode="verticalPoints" id="verticalPointsButton">Vertical - by Points</button>
+            <button class="button tool-button" type="button" data-dimension-mode="label" id="labelDimensionButton">Label</button>
+            <button class="button tool-button" type="button" data-dimension-mode="diameter" id="diameterDimensionButton">Diameter</button>
+            <button class="button tool-button" type="button" data-dimension-mode="radius" id="radiusDimensionButton">Radius</button>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Line Color</span>
+              <input id="dimensionLineColor" type="color" value="#ff2a2a">
+            </label>
+            <label class="field">
+              <span>Text Color</span>
+              <input id="dimensionTextColor" type="color" value="#ff2a2a">
+            </label>
+            <label class="field">
+              <span>Font Size</span>
+              <input id="dimensionFontSize" type="number" min="6" step="0.5" value="10">
+            </label>
+            <label class="field">
+              <span>Stroke Weight</span>
+              <input id="dimensionStrokeWidth" type="number" min="0.25" step="0.25" value="0.75">
+            </label>
+            <label class="field">
+              <span>Arrow Size</span>
+              <input id="dimensionArrowSize" type="number" min="3" step="0.5" value="7">
+            </label>
+            <label class="field">
+              <span>Label Text</span>
+              <input id="dimensionLabelText" type="text" value="Label">
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-panel" data-tab-panel="debug">
+        <section class="panel panel-log">
+          <div class="panel-header">
+            <h2>Log</h2>
+          </div>
+          <pre id="logOutput">Ready.</pre>
+        </section>
+      </div>
+    </div>
+
+    <script src="./bridge.js"></script>
+    <script src="./state.js"></script>
+    <script src="./ui/scale-panel.js"></script>
+    <script src="./ui/selection-panel.js"></script>
+    <script src="./ui/transform-panel.js"></script>
+    <script src="./ui/dimensions-panel.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
