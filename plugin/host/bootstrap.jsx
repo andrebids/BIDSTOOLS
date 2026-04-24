@@ -7,6 +7,7 @@
     "json.jsx",
     "format.jsx",
     "scale.jsx",
+    "panel-sync.jsx",
     "guards.jsx",
     "geometry.jsx",
     "metadata.jsx",

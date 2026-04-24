@@ -216,6 +216,12 @@ O painel CEP continua útil mesmo com tools nativas.
 - expor comandos de refresh/rebuild;
 - servir de fallback administrativo.
 
+### Papel da aba `Dimensions`
+
+Na arquitetura final, a aba `Dimensions` do BIDSTOOLS deve funcionar como painel de propriedades e defaults, não como lançador principal das tools de cotagem interativa.
+
+As tools interativas devem ser ativadas na toolbar nativa do Illustrator.
+
 ### Contrato entre painel e tool nativa
 
 - a tool lê defaults atuais do BIDSTOOLS;

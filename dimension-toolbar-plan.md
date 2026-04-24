@@ -23,6 +23,18 @@ Segundo a documentação de developer da Adobe para Illustrator, é possível ad
   - tools nativas para as ações principais de cota;
   - painel BIDSTOOLS para opções, escala e estilo.
 
+### Papel final da aba `Dimensions`
+
+A aba `Dimensions` no painel BIDSTOOLS não deve ser o local principal para disparar criação de cotas `by Line` ou `by Points`.
+
+O papel final desta aba deve ser:
+
+- definir `defaults` visuais;
+- definir `Font Size`, `Stroke Weight`, `Arrow Size`;
+- definir `Line Color` e `Text Color`;
+- definir texto default de `Label`;
+- expor futuras ações como `Refresh Linked Dimensions`, `Reattach` e edição de propriedades da cota selecionada.
+
 ### Comportamento esperado no Illustrator
 
 - as tools do BIDSTOOLS devem surgir na secção de ferramentas de terceiros;

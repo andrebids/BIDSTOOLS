@@ -1,5 +1,27 @@
 # Dev Scripts
 
+## Native plugin build
+
+Run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\build-native-plugin.ps1
+```
+
+Useful variants:
+
+```powershell
+$env:ILLUSTRATOR_SDK_DIR="C:\SDKs\illustrator-sdk"
+powershell -ExecutionPolicy Bypass -File .\scripts\build-native-plugin.ps1 -Clean
+```
+
+What it does:
+
+- validates `ILLUSTRATOR_SDK_DIR`
+- locates `cmake` from `PATH` or the installed Visual Studio 2022 Build Tools
+- configures `native-plugin/` with CMake
+- builds `BIDSTOOLSSelectionNotifier.aip` in `native-plugin\build\<Configuration>\`
+
 ## Illustrator CEP dev setup
 
 Run:

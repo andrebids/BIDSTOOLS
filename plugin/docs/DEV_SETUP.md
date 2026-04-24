@@ -18,11 +18,11 @@ Dev setup script:
   - `HKCU\Software\Adobe\CSXS.10`
   - `HKCU\Software\Adobe\CSXS.9`
 
-## Open the panel
+## Open the panels
 
 1. Restart Illustrator.
 2. Go to `Window > Extensions` or `Window > Extensions (Legacy)`.
-3. Open `BIDSTOOLS Measure`.
+3. Open `CADtracker`, `BIDSTOOLS Scale`, and `BIDSTOOLS Dimensions`.
 
 ## DevTools
 

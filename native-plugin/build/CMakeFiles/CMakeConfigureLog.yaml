@@ -1,0 +1,5 @@
+
+---
+events:
+  -
+    kind: "message-v1"

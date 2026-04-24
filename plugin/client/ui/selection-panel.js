@@ -8,6 +8,10 @@
     var infoElement = document.getElementById("selectionInfo");
     var messageElement = document.getElementById("selectionMessage");
 
+    if (!statusElement || !infoElement || !messageElement) {
+      return;
+    }
+
     if (!result.ok) {
       statusElement.textContent = "Error";
       statusElement.className = "pill status-error";

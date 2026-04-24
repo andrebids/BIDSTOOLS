@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BIDSTOOLS Scale</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app app-compact">
+      <header class="app-header">
+        <div>
+          <h1>Scale</h1>
+          <p class="subtitle">Shared defaults for all BIDSTOOLS panels</p>
+        </div>
+      </header>
+
+      <section class="panel" id="scalePanel">
+        <div class="panel-header">
+          <h2>Scale</h2>
+          <span class="pill" id="scaleSyncStatus">Synced</span>
+        </div>
+        <div class="radio-row">
+          <label><input type="radio" name="scaleMode" value="document"> Document-based</label>
+          <label><input type="radio" name="scaleMode" value="layer"> Layer-based</label>
+        </div>
+        <div class="field-grid single-column">
+          <label class="field">
+            <span>Preset</span>
+            <select id="scalePreset">
+              <option value="1:1">1:1</option>
+              <option value="38 mm = 1 m">38 mm = 1 m</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Custom</span>
+            <input id="customScaleInput" type="text" placeholder="38 mm = 1 m">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Current</h2>
+        </div>
+        <div class="summary-strip">
+          <span class="panel-note" id="scaleSummaryMode">Document-based</span>
+          <span class="summary-value" id="scaleSummaryValue">1:1</span>
+        </div>
+      </section>
+    </div>
+
+    <script src="./bridge.js"></script>
+    <script src="./state.js"></script>
+    <script src="./settings-store.js"></script>
+    <script src="./ui/scale-panel.js"></script>
+    <script src="./scale.js"></script>
+  </body>
+</html>

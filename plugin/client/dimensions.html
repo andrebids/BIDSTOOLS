@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BIDSTOOLS Dimensions</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app app-compact">
+      <header class="app-header">
+        <div>
+          <h1>Dimensions</h1>
+          <p class="subtitle">Default style used by BIDSTOOLS dimension tools</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Defaults</h2>
+          <span class="pill" id="dimensionsSyncStatus">Synced</span>
+        </div>
+        <div class="field-grid single-column">
+          <label class="field">
+            <span>Default Tool</span>
+            <select id="dimensionMode">
+              <option value="horizontalLine">Horizontal - by Line</option>
+              <option value="horizontalPoints">Horizontal - by Points</option>
+              <option value="verticalLine">Vertical - by Line</option>
+              <option value="verticalPoints">Vertical - by Points</option>
+              <option value="label">Label</option>
+              <option value="diameter">Diameter</option>
+              <option value="radius">Radius</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Line Color</span>
+            <input id="dimensionLineColor" type="color" value="#ff2a2a">
+          </label>
+          <label class="field">
+            <span>Text Color</span>
+            <input id="dimensionTextColor" type="color" value="#ff2a2a">
+          </label>
+          <label class="field">
+            <span>Font Size</span>
+            <input id="dimensionFontSize" type="number" min="6" step="0.5" value="10">
+          </label>
+          <label class="field">
+            <span>Stroke Weight</span>
+            <input id="dimensionStrokeWidth" type="number" min="0.25" step="0.25" value="0.75">
+          </label>
+          <label class="field">
+            <span>Arrow Size</span>
+            <input id="dimensionArrowSize" type="number" min="3" step="0.5" value="7">
+          </label>
+          <label class="field">
+            <span>Label Text</span>
+            <input id="dimensionLabelText" type="text" value="Label">
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <script src="./bridge.js"></script>
+    <script src="./state.js"></script>
+    <script src="./settings-store.js"></script>
+    <script src="./ui/dimensions-panel.js"></script>
+    <script src="./dimensions.js"></script>
+  </body>
+</html>

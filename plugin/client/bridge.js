@@ -1,5 +1,6 @@
 (function (global) {
   var REQUEST_PREFIX = "bidstools";
+  var SELECTION_CHANGED_EVENT = "com.bidstools.selectionChanged";
   var requestCounter = 0;
 
   function createFallbackInterface(reason) {
@@ -10,7 +11,19 @@
           error: reason || "CEP host interface unavailable. Open inside Illustrator CEP."
         };
         callback(JSON.stringify(payload));
-      }
+      },
+      addEventListener: function () {},
+      removeEventListener: function () {}
+    };
+  }
+
+  function createPartialCepInterface(cep) {
+    return {
+      evalScript: function (script, callback) {
+        cep.evalScript(script, callback);
+      },
+      addEventListener: function () {},
+      removeEventListener: function () {}
     };
   }
 
@@ -20,11 +33,7 @@
     }
 
     if (typeof global.__adobe_cep__ !== "undefined" && global.__adobe_cep__ && typeof global.__adobe_cep__.evalScript === "function") {
-      return {
-        evalScript: function (script, callback) {
-          global.__adobe_cep__.evalScript(script, callback);
-        }
-      };
+      return createPartialCepInterface(global.__adobe_cep__);
     }
 
     return createFallbackInterface("CEP scripting interface unavailable. The panel loaded, but the host bridge is not active.");
@@ -63,7 +72,7 @@
     }
 
     pathname = pathname.replace(/\//g, "\\");
-    return pathname.replace(/\\client\\index\.html$/i, "");
+    return pathname.replace(/\\client\\[^\\]+\.html$/i, "");
   }
 
   function parseResponse(raw) {
@@ -119,7 +128,26 @@
     });
   }
 
+  function addEventListener(type, listener) {
+    if (!csInterface || typeof csInterface.addEventListener !== "function") {
+      return function () {};
+    }
+
+    csInterface.addEventListener(type, listener);
+
+    return function removeListener() {
+      if (typeof csInterface.removeEventListener === "function") {
+        csInterface.removeEventListener(type, listener);
+      }
+    };
+  }
+
   global.BIDSTOOLSBridge = {
+    events: {
+      selectionChanged: SELECTION_CHANGED_EVENT
+    },
+    getExtensionRoot: getExtensionRoot,
+    addEventListener: addEventListener,
     invoke: invoke,
     refreshSelection: function (payload) {
       return invoke("getSelectionInfo", payload);
@@ -141,6 +169,9 @@
     },
     createDimensionLabel: function (payload) {
       return invoke("createDimensionLabel", payload);
+    },
+    syncPanelSettings: function (payload) {
+      return invoke("writePanelSettings", payload);
     }
   };
 })(this);

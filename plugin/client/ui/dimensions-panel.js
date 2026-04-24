@@ -1,21 +1,40 @@
 (function (global) {
   function renderDimensions(state) {
-    var modeButtons = document.querySelectorAll("[data-dimension-mode]");
-    var index;
+    var lineColor = document.getElementById("dimensionLineColor");
+    var textColor = document.getElementById("dimensionTextColor");
+    var fontSize = document.getElementById("dimensionFontSize");
+    var strokeWidth = document.getElementById("dimensionStrokeWidth");
+    var arrowSize = document.getElementById("dimensionArrowSize");
+    var labelText = document.getElementById("dimensionLabelText");
+    var dimensionMode = document.getElementById("dimensionMode");
 
-    for (index = 0; index < modeButtons.length; index += 1) {
-      modeButtons[index].classList.toggle(
-        "button-active",
-        modeButtons[index].getAttribute("data-dimension-mode") === state.dimensionMode
-      );
+    if (lineColor) {
+      lineColor.value = state.dimensionLineColor;
     }
 
-    document.getElementById("dimensionLineColor").value = state.dimensionLineColor;
-    document.getElementById("dimensionTextColor").value = state.dimensionTextColor;
-    document.getElementById("dimensionFontSize").value = state.dimensionFontSize;
-    document.getElementById("dimensionStrokeWidth").value = state.dimensionStrokeWidth;
-    document.getElementById("dimensionArrowSize").value = state.dimensionArrowSize;
-    document.getElementById("dimensionLabelText").value = state.dimensionLabelText;
+    if (textColor) {
+      textColor.value = state.dimensionTextColor;
+    }
+
+    if (fontSize) {
+      fontSize.value = state.dimensionFontSize;
+    }
+
+    if (strokeWidth) {
+      strokeWidth.value = state.dimensionStrokeWidth;
+    }
+
+    if (arrowSize) {
+      arrowSize.value = state.dimensionArrowSize;
+    }
+
+    if (labelText) {
+      labelText.value = state.dimensionLabelText;
+    }
+
+    if (dimensionMode) {
+      dimensionMode.value = state.dimensionMode;
+    }
   }
 
   global.BIDSTOOLSUI = global.BIDSTOOLSUI || {};

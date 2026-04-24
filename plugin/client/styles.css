@@ -33,6 +33,10 @@ body {
   padding: 8px;
 }
 
+.app-compact {
+  gap: 8px;
+}
+
 .tab-bar {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -77,6 +81,11 @@ h2 {
 .subtitle,
 .message {
   color: var(--muted);
+}
+
+.panel-note {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .panel {
@@ -130,6 +139,22 @@ h2 {
   display: grid;
   gap: 6px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.single-column {
+  grid-template-columns: 1fr;
+}
+
+.summary-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .transform-grid {

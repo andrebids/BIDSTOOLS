@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CADtracker</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app app-compact">
+      <header class="app-header">
+        <div>
+          <h1>CADtracker</h1>
+          <p class="subtitle">Selection and transform</p>
+        </div>
+        <button id="refreshButton" class="button button-secondary" type="button">Refresh</button>
+      </header>
+
+      <section class="panel">
+        <div class="summary-strip">
+          <div>
+            <h2>Active Scale</h2>
+            <p class="panel-note" id="scaleModeLabel">Document-based</p>
+          </div>
+          <span class="summary-value" id="currentScaleBadge">1:1</span>
+        </div>
+      </section>
+
+      <section class="panel" id="selectionPanel">
+        <div class="panel-header">
+          <h2>Selection</h2>
+          <span class="pill" id="selectionStatus">Idle</span>
+        </div>
+        <div class="info-grid" id="selectionInfo"></div>
+        <p class="message" id="selectionMessage">No data loaded.</p>
+      </section>
+
+      <section class="panel" id="transformPanel">
+        <div class="panel-header">
+          <h2>Transform</h2>
+        </div>
+        <div class="transform-grid">
+          <label class="field">
+            <span>W</span>
+            <div class="input-unit">
+              <input id="transformW" type="text" inputmode="decimal">
+              <span class="unit-suffix">m</span>
+            </div>
+          </label>
+          <label class="field">
+            <span>H</span>
+            <div class="input-unit">
+              <input id="transformH" type="text" inputmode="decimal">
+              <span class="unit-suffix">m</span>
+            </div>
+          </label>
+          <div class="lock-column">
+            <button id="lockToggleButton" class="button icon-lock-button icon-lock-active" type="button" aria-pressed="true" title="Lock proportions">
+              <span class="chain-icon" aria-hidden="true">
+                <span class="chain-link chain-link-left"></span>
+                <span class="chain-bridge"></span>
+                <span class="chain-link chain-link-right"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="preview-block">
+          <div class="preview-header">Preview</div>
+          <div class="preview-grid">
+            <div class="preview-item">
+              <span class="preview-label">W</span>
+              <strong id="previewW">0.00 m</strong>
+            </div>
+            <div class="preview-item">
+              <span class="preview-label">H</span>
+              <strong id="previewH">0.00 m</strong>
+            </div>
+            <div class="preview-item">
+              <span class="preview-label">Perimeter</span>
+              <strong id="previewPerimeter">0.00 m</strong>
+            </div>
+            <div class="preview-item">
+              <span class="preview-label">Area</span>
+              <strong id="previewArea">0.00 sq m</strong>
+            </div>
+          </div>
+        </div>
+        <button id="applyTransformButton" class="button" type="button">Apply Transform</button>
+      </section>
+    </div>
+
+    <script src="./bridge.js"></script>
+    <script src="./state.js"></script>
+    <script src="./settings-store.js"></script>
+    <script src="./ui/selection-panel.js"></script>
+    <script src="./cadtracker.js"></script>
+  </body>
+</html>
